@@ -10,7 +10,7 @@ const Login = () => {
                 {/* Left Box (Login Form) */}
                 <div className="flex flex-col bg-gray-900 items-center w-1/2 p-4 rounded-lg shadow-xl overflow-hidden text-white">
                     <img src={companyicon} alt="Logo" className="w-24 mb-5" />
-                    <h1 className="text-3xl font-semibold mb-6">Welcome</h1>
+                    <h1 className="text-3xl font-semibold mb-6">Welcome2</h1>
                     <input
                         type="email"
                         placeholder="Username *"
