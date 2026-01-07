@@ -1,4 +1,4 @@
-name: Frontend CI (Vite + React)
+name: Frontend CI + Local Nginx CD
 
 on:
   push:
@@ -6,20 +6,20 @@ on:
       - master
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  build-and-deploy:
+    runs-on: self-hosted   # runs on YOUR PC
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      - name: Install dependencies
-        run: npm install
+      - run: npm install
+      - run: npm run build
 
-      - name: Build project
-        run: npm run build
+      - name: Deploy to local nginx
+        run: |
+          xcopy dist C:\nginx-1.28.0\nginx-1.28.0\html /E /Y /I
+          C:\nginx\nginx.exe -s reload
